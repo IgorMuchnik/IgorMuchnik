@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Addition suite">
+
+    <test name="Addition test">
+        <classes>
+            <class name="hw1.AdditionTest"></class>
+        </classes>
+    </test>
+
+</suite>
