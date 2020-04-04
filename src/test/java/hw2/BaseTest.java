@@ -38,12 +38,12 @@ public class BaseTest {
   }
 
   public void login(String username, String pass){
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("user-icon"))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("user-icon"))).click();
     wait.until(ExpectedConditions.attributeToBe(By.className("uui-profile-menu"), "class",
       "dropdown uui-profile-menu open"));
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("name"))).sendKeys(username);
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("password"))).sendKeys(pass);
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("login-button"))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("name"))).sendKeys(username);
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("password"))).sendKeys(pass);
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("login-button"))).click();
   }
 
   public String getUsername(){
