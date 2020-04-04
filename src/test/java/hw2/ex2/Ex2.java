@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class Ex2 extends BaseTest {
 
   @Test
@@ -15,13 +18,13 @@ public class Ex2 extends BaseTest {
     openPage();
 
     //2 Assert Browser title
-    softAssert.assertEquals(driver.getTitle(), "Home Page", "Invalid title on the page");
+    assertEquals(driver.getTitle(), "Home Page", "Invalid title on the page");
 
     //3 Perform login
     login("Roman", "Jdi1234");
 
     //4 Assert Username is logged
-    softAssert.assertEquals(getUsername(), "ROMAN IOVLEV", "The login has not happened");
+    assertEquals(getUsername(), "ROMAN IOVLEV", "The login has not happened");
 
     //5 Open through the header menu Service -> Different Elements Page
     wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Service"))).click();
@@ -42,24 +45,23 @@ public class Ex2 extends BaseTest {
     //   for each checkbox there is an individual log row and value is corresponded to the status of checkbox
     WebElement waterCheckboxLog = wait.until(ExpectedConditions.visibilityOfElementLocated
       (By.xpath("//li[contains(text(),'Water: condition changed to true')]")));
-    softAssert.assertTrue(waterCheckboxLog.isDisplayed(), "Water checkbox log is not displayed");
+    assertTrue(waterCheckboxLog.isDisplayed(), "Water checkbox log is not displayed");
+
     WebElement windCheckboxLog = wait.until(ExpectedConditions.visibilityOfElementLocated
       (By.xpath("//li[contains(text(),'Wind: condition changed to true')]")));
-    softAssert.assertTrue(waterCheckboxLog.isDisplayed(), "Wind checkbox log is not displayed");
+    assertTrue(waterCheckboxLog.isDisplayed(), "Wind checkbox log is not displayed");
 
     //   for radio button there is a log row and value is corresponded to the status of radio button
     WebElement selenRadioLog = wait.until(ExpectedConditions.visibilityOfElementLocated
       (By.xpath("//li[contains(text(),'metal: value changed to  Selen')]")));
-    softAssert.assertTrue(waterCheckboxLog.isDisplayed(), "Selen radio log is not displayed");
+    assertTrue(waterCheckboxLog.isDisplayed(), "Selen radio log is not displayed");
 
     //   for dropdown there is a log row and value is corresponded to the selected value
     WebElement dropdownColorsLog = wait.until(ExpectedConditions.visibilityOfElementLocated
       (By.xpath("//li[contains(text(),'Colors: value changed to Yellow')]")));
-    softAssert.assertTrue(waterCheckboxLog.isDisplayed(), "Colors dropdown log is not displayed");
+    assertTrue(waterCheckboxLog.isDisplayed(), "Colors dropdown log is not displayed");
 
     //10 Close Browser
     // Done by tearDown method in the BaseTest class
-    // And finally look up all the asserts
-    softAssert.assertAll();
   }
 }
