@@ -10,45 +10,83 @@
 
     <properties>
         <webdrivermanager.version>3.8.1</webdrivermanager.version>
-
+        <selenium.version>3.141.59</selenium.version>
+      
         <java.source.version>1.8</java.source.version>
         <java.target.version>1.8</java.target.version>
 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <testng.version>7.1.0</testng.version>
-
-        <selenium.version>3.141.59</selenium.version>
-        <webdrivermanager.version>3.8.1</webdrivermanager.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
+        <calculator.version>1.0</calculator.version>
+      
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
+  
     <dependencies>
-        <dependency>
+      <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
             <scope>test</scope>
         </dependency>
-
+      
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+      
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>calculator-1.0</artifactId>
+            <version>${calculator.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/test/resources/calculator-1.0.jar</systemPath>
         </dependency>
     </dependencies>
 
     <profiles>
+        <profile>
+            <id>all</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/suites/allTests.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>addition</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/suites/additionTests.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>multAndDiv</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/suites/multAndDivTests.xml</suite.xml>
+            </properties>
+        </profile>
+        
         <profile>
             <id>hw2_ex1</id>
             <activation>
