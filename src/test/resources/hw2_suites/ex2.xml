@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Exercise 2 test suite">
+
+    <test name="Ex2-tests">
+        <packages>
+            <package name="hw2.ex1" />
+        </packages>
+    </test>
+</suite>
