@@ -13,7 +13,7 @@ import static org.testng.Assert.assertTrue;
 public class Ex2 extends BaseTest {
 
   @Test
-  public void exerciseTwoTest() {
+  public void exercise2() {
     //1 Open test site by URL
     openPage();
 
