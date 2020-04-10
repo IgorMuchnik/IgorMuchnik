@@ -70,7 +70,7 @@
         <profile>
             <id>addition</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw1/suites/additionTests.xml</suite.xml>
@@ -110,10 +110,20 @@
         <profile>
             <id>hw2_all</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw2/suites/all.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>hw3_all</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw3/suites/all.xml</suite.xml>
             </properties>
         </profile>
     </profiles>
