@@ -17,12 +17,7 @@ public class SideBarMenu extends AbstractComponent {
   }
 
   public boolean isSidebarElementsDisplayed(){
-    waitForSidebarMenuToBeVisible();
-    boolean isDisplayed = false;
-    for (WebElement element : sideBarMenuElements) {
-      isDisplayed = element.isDisplayed();
-    }
-    return isDisplayed;
+    return isElementsDisplayed(sideBarMenuElements);
   }
 
   public List<String> getSideBarMenuElementsText(){

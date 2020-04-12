@@ -59,12 +59,7 @@ public class HeaderMenu extends AbstractComponent {
   }
 
   public boolean isHeaderMenuItemsDisplayed(){
-    waitForHeaderMenuElementsToBeVisible();
-    boolean isDisplayed = false;
-    for (WebElement element : headerMenuElements) {
-      isDisplayed = element.isDisplayed();
-    }
-    return isDisplayed;
+    return isElementsDisplayed(headerMenuElements);
   }
 
   public void goToDifferentElementPage(){

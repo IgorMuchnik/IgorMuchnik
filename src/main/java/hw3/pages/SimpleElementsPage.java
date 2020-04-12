@@ -48,18 +48,11 @@ public class SimpleElementsPage extends AbstractPage {
   }
 
   public void setCheckBox(String checkboxName) {
-    wait.until(ExpectedConditions.visibilityOfAllElements(checkBoxElements));
-    for (WebElement checkBoxElement : checkBoxElements) {
-      if(!checkBoxElement.isSelected() & checkBoxElement.getText().equals(checkboxName))
-        checkBoxElement.click();
-    }
+    setElementInAList(checkboxName, checkBoxElements);
   }
 
-  public void setRadio(String checkboxName) {
-    wait.until(ExpectedConditions.visibilityOfAllElements(radioElements));
-    for (WebElement checkBoxElement : radioElements) {
-      if(!checkBoxElement.isSelected() & checkBoxElement.getText().equals(checkboxName))
-        checkBoxElement.click();
-    }
+  public void setRadio(String radioName) {
+    setElementInAList(radioName, radioElements);
   }
+
 }

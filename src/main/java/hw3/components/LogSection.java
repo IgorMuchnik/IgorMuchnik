@@ -15,38 +15,28 @@ public class LogSection extends AbstractComponent {
     super(driver);
   }
 
-  public boolean isCheckboxLogDisplayed(String checkboxName, String status) {
+  public boolean isSpecificLogDisplayed(String parameter) {
     waitForLogsToBeVisible();
     boolean isDisplayed = false;
     for (WebElement log : logs) {
-      if (log.getText().contains(checkboxName + ": condition changed to " + status)) {
+      if (log.getText().contains(parameter)) {
         isDisplayed = true;
       }
     }
     return isDisplayed;
+  }
+
+  public boolean isCheckboxLogDisplayed(String checkboxName, String status) {
+    return isSpecificLogDisplayed(checkboxName + ": condition changed to " + status);
   }
 
 
   public boolean isRadioLogDisplayed(String radioName) {
-    waitForLogsToBeVisible();
-    boolean isDisplayed = false;
-    for (WebElement log : logs) {
-      if (log.getText().contains("metal: value changed to " + radioName)) {
-        isDisplayed = true;
-      }
-    }
-    return isDisplayed;
+    return isSpecificLogDisplayed("metal: value changed to " + radioName);
   }
 
   public boolean isDropdownLogDisplayed(String dropdownValue) {
-    waitForLogsToBeVisible();
-    boolean isDisplayed = false;
-    for (WebElement log : logs) {
-      if (log.getText().contains("Colors: value changed to " + dropdownValue)) {
-        isDisplayed = true;
-      }
-    }
-    return isDisplayed;
+    return isSpecificLogDisplayed("Colors: value changed to " + dropdownValue);
   }
 
   private void waitForLogsToBeVisible(){

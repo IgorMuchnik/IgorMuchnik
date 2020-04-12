@@ -34,11 +34,6 @@ public class Benefits extends AbstractComponent {
   }
 
   public boolean isBenefitIconsDisplayed(){
-    wait.until(ExpectedConditions.visibilityOfAllElements(benefitImages));
-    boolean isDisplayed = false;
-    for (WebElement element : benefitImages) {
-      isDisplayed = element.isDisplayed();
-    }
-    return isDisplayed;
+    return isElementsDisplayed(benefitImages);
   }
 }
