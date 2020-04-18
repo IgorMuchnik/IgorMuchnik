@@ -27,7 +27,14 @@
     </properties>
   
     <dependencies>
-      <dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
@@ -120,10 +127,20 @@
         <profile>
             <id>hw3_all</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw3/suites/all.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>hw4_all</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw4/suites/all.xml</suite.xml>
             </properties>
         </profile>
     </profiles>
