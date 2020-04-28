@@ -9,8 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <webdrivermanager.version>3.8.1</webdrivermanager.version>
-        <selenium.version>3.141.59</selenium.version>
+        <!-- <webdrivermanager.version>3.8.1</webdrivermanager.version> -->
+        <selenium.version>3.141.59</selenium.version><jdi.version>RELEASE</jdi.version>
+        <jdi.version>RELEASE</jdi.version>
+        <lombok.version>1.18.12</lombok.version>
+        <guava.version>22.0</guava.version>
       
         <java.source.version>1.8</java.source.version>
         <java.target.version>1.8</java.target.version>
@@ -21,6 +24,8 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
         <calculator.version>1.0</calculator.version>
+        <driver>chrome</driver>
+        <domain>https://jdi-testing.github.io/jdi-light/</domain>
       
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -28,24 +33,42 @@
   
     <dependencies>
         <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>${jdi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.11.1</version>
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> -->
       
-        <dependency>
+        <!-- <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
-        </dependency>
+        </dependency> -->
       
         <dependency>
             <groupId>org.testng</groupId>
@@ -137,10 +160,20 @@
         <profile>
             <id>hw4_all</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw4/suites/all.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>hw7-all-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw7/suites/all.xml</suite.xml>
             </properties>
         </profile>
     </profiles>
@@ -166,6 +199,19 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
     </build>
 
 </project>
