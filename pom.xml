@@ -11,20 +11,20 @@
     <properties>
         <webdrivermanager.version>3.8.1</webdrivermanager.version>
         <selenium.version>3.141.59</selenium.version>
-        <cucumber.version>5.6.0</cucumber.version>
-      
-        <java.source.version>1.8</java.source.version>
-        <java.target.version>1.8</java.target.version>
-
         <testng.version>7.1.0</testng.version>
+        <allure.version>2.13.2</allure.version>
+        <aspectj.version>1.9.5</aspectj.version>
+        <cucumber.version>5.6.0</cucumber.version>
+        <calculator.version>1.0</calculator.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <allure-maven-plugin.version>2.10.0</allure-maven-plugin.version>
 
-        <calculator.version>1.0</calculator.version>
-      
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
     </properties>
   
     <dependencies>
@@ -64,6 +64,13 @@
         </dependency>
 
         <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+      
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -87,7 +94,7 @@
 
     <profiles>
         <profile>
-            <id>all</id>
+            <id>hw1_all</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -97,7 +104,7 @@
         </profile>
 
         <profile>
-            <id>addition</id>
+            <id>hw1_addition</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -107,7 +114,7 @@
         </profile>
 
         <profile>
-            <id>multAndDiv</id>
+            <id>hw1_multAndDiv</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -150,8 +157,7 @@
             <id>hw3_all</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
+            </activation>            <properties>
                 <suite.xml>src/test/resources/hw3/suites/all.xml</suite.xml>
             </properties>
         </profile>
@@ -166,6 +172,16 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>hw5_all</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw5/suites/all.xml</suite.xml>
+            </properties>
+        </profile>
+      
         <profile>
             <id>hw6_all</id>
             <activation>
@@ -190,12 +206,34 @@
             </plugin>
 
             <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven-plugin.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <suiteXmlFiles>${suite.xml}</suiteXmlFiles>
+                    <suiteXmlFiles>
+                        <xmlFile>${suite.xml}</xmlFile>
+                    </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
