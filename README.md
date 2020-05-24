@@ -16,7 +16,7 @@ Homework #6 - BDD, TDD, Cucumber.
 
 Homework #7 - Using JDI Light Framework.
 
-Homework #8 - Test SOAP API using SOAPUI (located in separated directory in the root)
+Homework #8 - Test SOAP API using SOAPUI (located in a separated directory in the root)
 
 Homework #9 - Test REST API using REST Assured
 ```
